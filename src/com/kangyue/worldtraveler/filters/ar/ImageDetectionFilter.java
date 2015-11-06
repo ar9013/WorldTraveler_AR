@@ -33,6 +33,9 @@ import com.kangyue.worldtraveler.filters.Filter;
 
 public final class ImageDetectionFilter implements ARFilter {
 
+	
+	// The color of the outline drawn around the detected image.
+		private final Scalar mLineColor = new Scalar(0, 255, 0);
 	// The reference image (this detector's target).
 	private final Mat mReferenceImage;
 	// Features of the reference image.
@@ -358,6 +361,8 @@ public final class ImageDetectionFilter implements ARFilter {
 			src.copyTo(dst);
 		}
 
+		Imgproc.rectangle(dst, new Point(mSceneCorners2D.get(0, 0)), new Point(mSceneCorners2D.get(2, 0)), mLineColor);
+		
 		if (!mTargetFound) {
 			// The target has not been found.
 
